@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'public/style.css' %}" type="text/css">
+    <title>
+        {% block title %}
+            Rolorex
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
