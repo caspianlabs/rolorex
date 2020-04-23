@@ -1,0 +1,11 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+    <h2>Sign up for Rolorex</h2>
+
+    <form method="post" action="{% url 'registration:register' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-dark">Sign up</button>
+    </form>
+{% endblock %}

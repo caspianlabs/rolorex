@@ -1,0 +1,11 @@
+{% extends "public/base.html" %}
+
+{% block content %}
+    <h2>Sign in to Rolorex</h2>
+
+    <form method="post" action="{% url 'registration:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-dark">Sign in</button>
+    </form>
+{% endblock %}

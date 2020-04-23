@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rolorex.apps.RolorexAdminConfig',
     'app.apps.AppConfig',
-    'public.apps.PublicConfig'
+    'public.apps.PublicConfig',
+    'registration.apps.AccountConfig'
 ]
 
 MIDDLEWARE = [
