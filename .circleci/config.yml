@@ -34,7 +34,28 @@ jobs:
           path: test-results
       - store_artifacts:
           path: htmlcov
+  build_and_push_docker:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build Image
+          command: |
+            docker build -t caspianlabs/rolorex:$CIRCLE_SHA1 .
+            docker tag caspianlabs/rolorex:$CIRCLE_SHA1 caspianlabs/rolorex:latest
+      - run:
+          name: Push Image
+          command: |
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+            docker push caspianlabs/rolorex
 workflows:
   main:
     jobs:
       - build
+      - build_and_push_docker:
+          context: dockerhub
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
