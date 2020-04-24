@@ -1,7 +1,50 @@
 {% extends "public/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-    <h1 class="mt-5">
-        Welcome to Rolorex
-    </h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="mt-5">
+                    Built for Humans
+                </h1>
+                <p>
+                    Rolorex is a personal relationship management system
+                    that will help you network like a beast.
+                </p>
+                <p>
+                    Sign up here to get early access to Rolorex.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <form class="cta mt-5 p-5" method="post" action="{% url 'registration:register' %}">
+                    <div class="form-group">
+                        <label for="emailInput">Email Address</label>
+                        <input type="email" class="form-control" id="emailInput">
+                        <small id="emailHelp" class="form-text text-muted">
+                            We'll never share your email with anyone else.
+                        </small>
+                    </div>
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        {{ form.username.label }}
+                        {{ form.username|add_class:"form-control" }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.email.label }}
+                        {{ form.email|add_class:"form-control" }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.password.label }}
+                        {{ form.password|add_class:"form-control" }}
+                    </div>
+
+                    <button type="submit" class="save btn btn-dark">Join</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

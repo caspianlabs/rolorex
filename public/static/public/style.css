@@ -1,3 +1,7 @@
+body {
+  background-color: #D3D3D3;
+}
+
 main > .container {
   padding: 60px 15px 0;
 }
@@ -13,4 +17,9 @@ main > .container {
 
 code {
   font-size: 80%;
+}
+
+.cta {
+  background-color: #EFEBE9;
+  border-radius: 5px;
 }

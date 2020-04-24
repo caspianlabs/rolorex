@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rolorex.apps.RolorexAdminConfig',
+    'widget_tweaks',
     'app.apps.AppConfig',
     'public.apps.PublicConfig',
     'registration.apps.AccountConfig'
