@@ -7,7 +7,7 @@ done
 
 # Send Latest Scripts to Production Server
 rsync -e "ssh -o StrictHostKeyChecking=no" -avz scripts/ $PROD_SERVER:/var/www/app/rolorex/scripts/
-rsync -e "ssh -o StrictHostKeyChecking=no" -avz etc/ $PROD_SERVER:/var/www/app/rolorex/etc/
+rsync -e "ssh -o StrictHostKeyChecking=no" -avz static/ $PROD_SERVER:/var/www/app/rolorex/static/
 scp -o StrictHostKeyChecking=no docker-compose.prod.yml $PROD_SERVER:/var/www/app/rolorex/docker-compose.yml
 
 # Clean up old images

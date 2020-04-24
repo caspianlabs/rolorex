@@ -53,11 +53,21 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.8
+        environment:
+          DJANGO_SETTINGS_MODULE: rolorex.settings.dev
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: sudo apt install -y rsync
+      - python/load-cache
+      - run:
+          name: Install Dependencies
+          command: pip install --user -r dev-requirements.txt
+      - python/save-cache
+      - run:
+          name: Generate Static Files
+          command: python manage.py collectstatic
       - run:
           name: Deploy to production
           command: |
