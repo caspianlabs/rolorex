@@ -22,7 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Production Configuration
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 SECRET_KEY = os.environ.get('SECRET_KEY')
-DEBUG = False
+# TODO refactor into flag
+DEBUG = int(os.environ.get('DEBUG')) or False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 # TODO investigate security setings
