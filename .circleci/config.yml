@@ -10,6 +10,7 @@ jobs:
           DB_USER: rolorex
           DB_PASSWORD: rolorex
           DB_HOST: localhost
+          DJANGO_SETTINGS_MODULE: rolorex.settings.dev
       - image: circleci/postgres
         environment:
           POSTGRES_USER: rolorex
@@ -41,6 +42,7 @@ jobs:
       - run:
           name: Build Image
           command: |
+            chmod +x ./scripts/*.sh
             docker build -t caspianlabs/rolorex:$CIRCLE_SHA1 .
             docker tag caspianlabs/rolorex:$CIRCLE_SHA1 caspianlabs/rolorex:latest
       - run:
@@ -58,7 +60,9 @@ jobs:
           command: sudo apt install -y rsync
       - run:
           name: Deploy to production
-          command: ./scripts/deploy.sh
+          command: |
+            chmod +x ./scripts/*.sh
+            ./scripts/deploy.sh
 
 workflows:
   main:
@@ -73,7 +77,7 @@ workflows:
               only: master
       - deploy:
           requires:
-            - build_docker
+            - build_and_push_docker
           filters:
             branches:
               only: master

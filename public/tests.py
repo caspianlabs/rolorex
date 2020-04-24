@@ -7,5 +7,4 @@ class PublicIndexViewTests(TestCase):
         """Going to the index page shows me log in info."""
         response = self.client.get(reverse('public:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Welcome to Rolorex")
-
+        self.assertContains(response, "Built for Humans")

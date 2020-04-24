@@ -19,7 +19,7 @@ class RegistrationRegisterViewTest(TestCase):
             'password': 'super-security'
         }, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Welcome to Rolorex")
+        self.assertContains(response, "Built for Humans")
 
         new_user = User.objects.get(username='tester')
         self.assertEqual(new_user.email, 'test@tester.com')
