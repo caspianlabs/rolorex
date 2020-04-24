@@ -7,4 +7,4 @@ done
 
 >&2 echo "Postgres is up, starting Rolorex"
 python manage.py migrate
-gunicorn rolorex.wsgi -w 4 -b 0.0.0.0:8000
+gunicorn rolorex.wsgi:application -c python:rolorex.settings.gunicorn

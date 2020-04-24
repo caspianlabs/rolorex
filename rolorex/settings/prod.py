@@ -25,8 +25,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 0
-SECURE_SSL_REDIRECT = True
+# TODO investigate security setings
+#   right now, these result in a 400 bad request from nginx + gunicorn
+# SECURE_HSTS_SECONDS = 0
+# SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
