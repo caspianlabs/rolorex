@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rolorex:
+    image: caspianlabs/rolorex
+    env_file:
+      - .env
+    ports:
+      - "8002:8000"
+    extra_hosts:
+      - "$DB_HOST:$DB_HOST_IP"
+    command: ./scripts/start.sh

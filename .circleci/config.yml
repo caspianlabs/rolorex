@@ -48,6 +48,18 @@ jobs:
           command: |
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
             docker push caspianlabs/rolorex
+  deploy:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: sudo apt install -y rsync
+      - run:
+          name: Deploy to production
+          command: ./scripts/deploy.sh
+
 workflows:
   main:
     jobs:
@@ -56,6 +68,12 @@ workflows:
           context: dockerhub
           requires:
             - build
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build_docker
           filters:
             branches:
               only: master
