@@ -1,6 +1,8 @@
 version: 2.1
 orbs:
   python: circleci/python@0.2.1
+  launchdarkly: launchdarkly/ld-find-code-refs@1.4.0
+
 jobs:
   build:
     docker:
@@ -77,6 +79,11 @@ jobs:
 workflows:
   main:
     jobs:
+      - launchdarkly/find-code-references:
+          context: launchdarkly
+          proj_key: rolorex
+          repo_type: github
+          repo_url: https://github.com/caspianlabs/rolorex
       - build
       - build_and_push_docker:
           context: dockerhub

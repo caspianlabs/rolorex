@@ -36,9 +36,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'registration:login' %}">Sign in</a>
                 </li>
+            {% if FLAGS.registration_enabled %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'registration:register' %}">Sign up</a>
                 </li>
+            {% endif %}
             </ul>
         </div>
     </nav>
