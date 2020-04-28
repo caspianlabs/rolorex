@@ -1,0 +1,8 @@
+Good news,
+
+A new user signed up for early access:
+
+{{ email_address }}
+
+--
+Have the best day of your life!

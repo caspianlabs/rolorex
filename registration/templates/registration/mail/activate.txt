@@ -1,0 +1,7 @@
+{% autoescape off %}
+Hi {{ username }},
+
+Please click on the following link to confirm your registration to Rolorex.
+
+https://{{domain}}{% url 'registration:activate' uidb64=uid token=token %}
+{% endautoescape %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from types import SimpleNamespace
 
 from dotenv import load_dotenv
 
@@ -18,7 +19,6 @@ load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -30,10 +30,10 @@ SECRET_KEY = 'd0bme4sw6e25eqr)$*9ng-bj+)xu5mlh-*vka6iy)fm$ybo#@p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# TODO Get this into an env
+ADMINS = [('Lev Lazinskiy', 'rolorex_admin@caspianlabs.org'), ]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'app.apps.AppConfig',
     'public.apps.PublicConfig',
-    'registration.apps.AccountConfig'
+    'registration.apps.AccountConfig',
+    'tasks.apps.TasksConfig'
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -136,3 +136,22 @@ STATIC_ROOT = 'static/'
 # Testing
 TEST_RUNNER = 'xmlrunner.extra.djangotestrunner.XMLTestRunner'
 TEST_OUTPUT_DIR = 'test-results'
+
+# Mail configuration
+# https://docs.djangoproject.com/en/3.0/topics/email/
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+SERVER_EMAIl = os.environ.get('SERVER_EMAIL')
+
+# Celery Configuration
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER")
+CELERY_RESULTS_BACKEND = os.environ.get("CELERY_BROKER")
+
+# Feature Flags
+FLAGS = SimpleNamespace()
+FLAGS.ENABLE_REGISTRATION = True
+

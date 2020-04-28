@@ -1,12 +1,11 @@
-from rolorex.launchdarkly import ld, any_user
+from django.conf import settings
 
 
 def get_flags(request):
     """
-    Get feature flags from LaunchDarkly and pass them to the global template state.
+    Get feature flags and pass them to the global template state.
 
     :param request: Django HttpRequest object
-    :return: Dictionary of all LD feature flags
+    :return: Dictionary of all feature flags
     """
-    flags = ld.all_flags(any_user)
-    return {'FLAGS': flags}
+    return {'FLAGS': settings.FLAGS}

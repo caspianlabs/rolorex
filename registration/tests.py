@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
@@ -13,16 +15,17 @@ class RegistrationRegisterViewTest(TestCase):
 
     def test_valid_registration(self):
         """Entering valid input to the registration form redirects me to the index."""
-        response = self.client.post(reverse('registration:register'), {
-            'username': 'tester',
-            'email': 'test@tester.com',
-            'password': 'super-security'
-        }, follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Built for Humans")
+        with patch('tasks.mail_task.send_email_task.delay') as mock_task:
+            response = self.client.post(reverse('registration:register'), {
+                'username': 'tester',
+                'email': 'test@tester.com',
+                'password': 'super-security'
+            }, follow=True)
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, "Built for Humans")
 
-        new_user = User.objects.get(username='tester')
-        self.assertEqual(new_user.email, 'test@tester.com')
+            new_user = User.objects.get(username='tester')
+            self.assertEqual(new_user.email, 'test@tester.com')
 
     def test_invalid_registration(self):
         """Entering invalid input to the registration form returns an error."""

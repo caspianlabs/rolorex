@@ -2,6 +2,7 @@ version: '3'
 services:
   rolorex:
     image: caspianlabs/rolorex
+    restart: always
     env_file:
       - .env
     ports:
@@ -9,3 +10,20 @@ services:
     extra_hosts:
       - "$DB_HOST:$DB_HOST_IP"
     command: ./scripts/start.sh
+  celery:
+    image: caspianlabs/rolorex
+    restart: always
+    env_file:
+      - .env
+    command: ["celery", "worker", "--app=rolorex"]
+  flower:
+    image: caspianlabs/rolorex
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5555:5555"
+    command: ["flower", "-A", "rolorex"]
+  redis:
+    image: redis:alpine
+    restart: always

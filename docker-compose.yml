@@ -14,6 +14,8 @@ services:
     command: ["python", "manage.py", "runserver", "0:8000"]
     links:
       - db
+      - redis
+      - celery
   db:
     image: postgres:alpine
     environment:
@@ -24,5 +26,25 @@ services:
       - 15432:5432
     volumes:
       - ./data:/var/lib/postgresql
+  celery:
+    image: caspianlabs/rolorex
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - ./logs:/usr/src/app/logs
+    command: ["celery", "worker", "--app=rolorex", "--loglevel=info", "--logfile=logs/celery.log"]
+  flower:
+    image: caspianlabs/rolorex
+    restart: always
+    ports:
+      - 5555:5555
+    env_file:
+      - .env
+    command: ["flower", "-A", "rolorex"]
+  redis:
+    image: redis:alpine
+
 
 

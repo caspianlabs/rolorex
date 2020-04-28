@@ -6,4 +6,6 @@ psycopg2-binary
 python-dotenv
 django-widget-tweaks
 gunicorn
-launchdarkly-server-sdk
+celery
+flower
+redis

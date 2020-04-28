@@ -1,1 +1,1 @@
-import rolorex.launchdarkly
+import rolorex.celery

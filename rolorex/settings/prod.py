@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from types import SimpleNamespace
 
 from dotenv import load_dotenv
 
@@ -32,6 +33,7 @@ SESSION_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
+ADMINS = [os.environ.get('ADMINS')]
 
 # Application definition
 
@@ -45,7 +47,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'app.apps.AppConfig',
     'public.apps.PublicConfig',
-    'registration.apps.AccountConfig'
+    'registration.apps.AccountConfig',
+    'tasks.apps.TasksConfig'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +130,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Mail configuration
+# https://docs.djangoproject.com/en/3.0/topics/email/
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+SERVER_EMAIl = os.environ.get('SERVER_EMAIL')
+
+# Celery Configuration
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER")
+CELERY_RESULTS_BACKEND = os.environ.get("CELERY_BROKER")
+
+# Feature Flags
+FLAGS = SimpleNamespace()
+FLAGS.ENABLE_REGISTRATION = False
