@@ -1,0 +1,40 @@
+# Fixtures for EventType
+- model: app.eventtype
+  pk: 1
+  fields:
+    title: Email
+    description: Send an email
+- model: app.eventtype
+  pk: 2
+  fields:
+    title: Phone Call
+    description: Make a phone call
+- model: app.eventtype
+  pk: 3
+  fields:
+    title: Mail
+    description: Send physical mail
+- model: app.eventtype
+  pk: 4
+  fields:
+    title: Virtual Meeting
+    description: Have a virtual meeting
+- model: app.eventtype
+  pk: 5
+  fields:
+    title: Meeting
+    description: Meet in person
+
+# Fixtures for RelationshipType
+- model: app.relationshiptype
+  pk: 1
+  fields:
+    label: Personal
+- model: app.relationshiptype
+  pk: 2
+  fields:
+    label: Professional
+- model: app.relationshiptype
+  pk: 3
+  fields:
+    label: Educational

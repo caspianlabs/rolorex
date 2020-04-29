@@ -148,3 +148,6 @@ CELERY_RESULTS_BACKEND = os.environ.get("CELERY_BROKER")
 # Feature Flags
 FLAGS = SimpleNamespace()
 FLAGS.ENABLE_REGISTRATION = False
+
+# Auth Configuration
+LOGIN_REDIRECT_URL = "/app"
